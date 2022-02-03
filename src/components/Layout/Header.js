@@ -3,7 +3,7 @@ import React,{Fragment} from "react";
 import HeaderCartButton from "./HeaderCartButton";
 import mealImage from '../../assets/meals.jpg';
 
-import classes from './Header.css';
+import classes from './Header.module.css';
 
 const Header = (props) => {
 
@@ -13,7 +13,7 @@ const Header = (props) => {
                 <h1>React Food App</h1>
                 <HeaderCartButton />
             </header>
-            <div className={classes['main-iamge']}>
+            <div className={classes['main-image']}>
                 <img src={mealImage} />
             </div>
         </Fragment>
