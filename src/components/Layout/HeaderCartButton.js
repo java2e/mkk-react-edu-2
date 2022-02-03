@@ -12,7 +12,7 @@ const HeaderCartButton = (props) => {
     const btnClasses =  `${classes.button} ${btnIsHighlighted ? classes.bump : ''}`;
 
     return(
-        <button className={btnClasses}>
+        <button className={btnClasses} onClick={props.onClick}>
             <span className={classes.icon}>
                <CartIcon />
             </span>
