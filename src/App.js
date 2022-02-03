@@ -4,28 +4,29 @@ import Header from './components/Layout/Header';
 import Meals from './components/Meals/Meals';
 import { useState } from 'react';
 import Cart from './components/Cart/Cart';
+import CartProvider from './store/CartProvider';
 
 function App() {
 
-  const [cartShow,setCartShow] = useState(false);
+  const [cartShow, setCartShow] = useState(false);
 
-  const showCartHandler = () =>{
+  const showCartHandler = () => {
     setCartShow(true);
   }
-  const closeCartHandler = () =>{
+  const closeCartHandler = () => {
     setCartShow(false);
   }
 
 
 
   return (
-    <div>
+    <CartProvider>
       {cartShow && <Cart onClose={closeCartHandler} />}
       <Header showCartHandler={showCartHandler} />
       <main>
         <Meals />
       </main>
-    </div>
+    </CartProvider>
   );
 }
 
