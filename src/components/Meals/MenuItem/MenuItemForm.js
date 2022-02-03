@@ -11,12 +11,14 @@ const MenuItemForm = (props) => {
 
 
     const amountInputRef = useRef();
-
+    
 
     const submitHandler =(event) => {
 
+
         event.preventDefault();
 
+    
         const enteredAmount =amountInputRef.current.value;
         const enteredAmountNumber = +enteredAmount;
 
@@ -24,6 +26,8 @@ const MenuItemForm = (props) => {
             setAmountIsValid(true);
             return;
         }
+
+        
 
         props.onAddToCart(enteredAmountNumber);
     }
@@ -44,8 +48,9 @@ const MenuItemForm = (props) => {
                     defaultValue: '1',
                 }}
             />
+
             <button>+ Ekle</button>
-            {!amountIsValid && <p>Miktar 1 ila 5 arasında olmalıdır!</p>}
+            {amountIsValid && <p>Miktar 1 ila 5 arasında olmalıdır!</p>}
         </form>
 
     )
