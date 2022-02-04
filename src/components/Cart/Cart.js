@@ -5,6 +5,7 @@ import classes from './Cart.module.css';
 
 import CartContext from "../../store/cart-context";
 import CartItem from "./CartItem";
+import Checkout from "./Checkout";
 
 
 const Cart = (props) => {
@@ -47,6 +48,7 @@ const Cart = (props) => {
                 <span>Toplam</span>
                 <span>{totalAmount}</span>
             </div>
+            <Checkout />
             <div className={classes.actions}>
                 <button className={classes['button-alt']}>Kapat</button>
                 <button className={classes.button}>Siparişi Tamamla</button>
