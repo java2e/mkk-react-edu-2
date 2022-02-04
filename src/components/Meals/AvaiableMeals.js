@@ -2,6 +2,7 @@ import Card from "../UI/Card";
 import MenuItem from "./MenuItem/MenuItem";
 
 import classes from './AvaiableMeals.module.css';
+import { useEffect } from "react";
 
 const DUMMY_MEALS = [
     {
@@ -32,6 +33,34 @@ const DUMMY_MEALS = [
 ]
 
 const AvaibaleMeals = () => {
+
+    useEffect(() => {
+
+        const fetchMeals = async () => {
+
+
+            const response = await fetch(
+                'https://mkk-react-edu-default-rtdb.firebaseio.com/meals.json'
+            );
+
+            if(!response.ok){
+                throw new Error("Data çekilemedi!");
+            }
+
+
+            const responseData = await response.json();
+
+            console.log(responseData);
+
+
+        }
+
+        fetchMeals().catch((error) => {
+            console.log(error.message)
+        })
+        
+
+    },[])
 
 
     const mealList = DUMMY_MEALS.map((meal) =>(
