@@ -2,7 +2,7 @@ import Card from "../UI/Card";
 import MenuItem from "./MenuItem/MenuItem";
 
 import classes from './AvaiableMeals.module.css';
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 const DUMMY_MEALS = [
     {
@@ -34,6 +34,9 @@ const DUMMY_MEALS = [
 
 const AvaibaleMeals = () => {
 
+    const [meals,setMeals] = useState([]);
+    const [isLoading,setIsLoading] = useState(true);
+
     useEffect(() => {
 
         const fetchMeals = async () => {
@@ -50,8 +53,20 @@ const AvaibaleMeals = () => {
 
             const responseData = await response.json();
 
-            console.log(responseData);
+            const loadedMeals = [];
 
+            for(const key in responseData)
+            {
+                loadedMeals.push({
+                    id: key,
+                    name:responseData[key].name,
+                    description: responseData[key].description,
+                    price: responseData[key].price
+                })
+            }
+
+            setMeals(loadedMeals);
+            setIsLoading(false);
 
         }
 
@@ -62,8 +77,16 @@ const AvaibaleMeals = () => {
 
     },[])
 
+    if(isLoading){
+        return (
+            <section>
+                <p>Loading.....</p>
+            </section>
+        )
+    }
 
-    const mealList = DUMMY_MEALS.map((meal) =>(
+
+    const mealList = meals.map((meal) =>(
         <MenuItem
         key={meal.id}
         id={meal.id}
